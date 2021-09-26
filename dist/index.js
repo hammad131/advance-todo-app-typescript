@@ -1,15 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const todo_1 = require("./todo");
-const todoCollection_1 = require("./todoCollection");
 const inquirer = require("inquirer");
+const jsonTodoCollection_1 = require("./jsonTodoCollection");
 let todos = [
     new todo_1.Todo(1, 'Go For Walk'),
     new todo_1.Todo(2, 'Have BreakFast'),
     new todo_1.Todo(3, 'Do code'),
     new todo_1.Todo(4, 'Go to Sleep', true)
 ];
-let itemCollection = new todoCollection_1.TodoCollection('muneeb', todos);
+let itemCollection = new jsonTodoCollection_1.JsonTodoCollection('hammad', todos);
 let showComplete = true;
 function displayTodoList() {
     console.log(`${itemCollection.userName}'s Todo List `

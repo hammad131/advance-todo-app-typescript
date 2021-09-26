@@ -10,7 +10,7 @@ export class TodoCollection{
 
     
     private nextId: number = 1;
-    private itemMap = new Map<number, Todo>();
+    protected itemMap = new Map<number, Todo>();
 
     public constructor(public userName:string ,  public items:Todo[] = []){
         items.forEach((item)=>this.itemMap.set(item.taskId,item))
