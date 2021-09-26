@@ -9,7 +9,8 @@ class Todo {
         //compiler will auto generate
     }
     printTask() {
-        console.log(`id:${this.taskId}, \ntask:${this.task}, \ncompleted:${this.done}`);
+        console.log(`${this.taskId}\t${this.task} ${this.done
+            ? "\t(complete)" : ""}`);
     }
 }
 exports.Todo = Todo;

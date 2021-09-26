@@ -1,5 +1,10 @@
 import {Todo} from './todo'
 
+type TodoCounts = {
+    total: number
+    incomplete: number,
+    complete: number,
+}
 
 export class TodoCollection{
 
@@ -24,9 +29,8 @@ export class TodoCollection{
         return this.itemMap.get(id)
     }
 
-    getTodoByState(complete:boolean):Todo[]{
-        console.log([...this.itemMap.values()].filter(item=> item.done === complete))
-        return [...this.itemMap.values()].filter(item=> item.done === complete)
+    getTodoByStatus(complete:boolean):Todo[]{
+        return [...this.itemMap.values()].filter((item)=> item.done===complete)
     }
 
     markComplete(id:number, complete:boolean):void{
@@ -34,9 +38,9 @@ export class TodoCollection{
         if (todo){
             todo.done = complete
         }
-        console.log(todo)
+        
     }
-    
+
     removeComplete(){
         this.itemMap.forEach(item =>{
             if(item.done){
@@ -45,12 +49,22 @@ export class TodoCollection{
         })
     }
 
+    getTodoCount():TodoCounts{
+        console.log({
+            total: this.itemMap.size,
+            incomplete: this.getTodoByStatus(false).length,
+            complete: this.getTodoByStatus(true).length,
+        })
+        return {
+            total: this.itemMap.size,
+            incomplete: this.getTodoByStatus(false).length,
+            complete: this.getTodoByStatus(true).length,
+        }
+    }
+
         
 
-    public taskDone(taskId:number):void{
-        let item:Todo = this.items.find((item)=> item.taskId == taskId);
-        item.done = true
-    }
+    
 
     public printAll():void{
         this.itemMap.forEach((item:Todo)=>{

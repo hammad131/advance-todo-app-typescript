@@ -3,6 +3,7 @@ export class Todo {
         //compiler will auto generate
     }
     public printTask():void{
-        console.log(`id:${this.taskId}, \ntask:${this.task}, \ncompleted:${this.done}`)
+        console.log(`${this.taskId}\t${this.task} ${this.done
+            ? "\t(complete)": ""}`);
     }
 }

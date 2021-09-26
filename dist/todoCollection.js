@@ -20,16 +20,14 @@ class TodoCollection {
     getTodoById(id) {
         return this.itemMap.get(id);
     }
-    getTodoByState(complete) {
-        console.log([...this.itemMap.values()].filter(item => item.done === complete));
-        return [...this.itemMap.values()].filter(item => item.done === complete);
+    getTodoByStatus(complete) {
+        return [...this.itemMap.values()].filter((item) => item.done === complete);
     }
     markComplete(id, complete) {
         let todo = this.getTodoById(id);
         if (todo) {
             todo.done = complete;
         }
-        console.log(todo);
     }
     removeComplete() {
         this.itemMap.forEach(item => {
@@ -38,9 +36,17 @@ class TodoCollection {
             }
         });
     }
-    taskDone(taskId) {
-        let item = this.items.find((item) => item.taskId == taskId);
-        item.done = true;
+    getTodoCount() {
+        console.log({
+            total: this.itemMap.size,
+            incomplete: this.getTodoByStatus(false).length,
+            complete: this.getTodoByStatus(true).length,
+        });
+        return {
+            total: this.itemMap.size,
+            incomplete: this.getTodoByStatus(false).length,
+            complete: this.getTodoByStatus(true).length,
+        };
     }
     printAll() {
         this.itemMap.forEach((item) => {
